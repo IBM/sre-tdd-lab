@@ -1,0 +1,23 @@
+{
+  "name": "sre-tdd-lab",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "sinon": "^9.0.3",
+    "tap": "^14.10.8"
+  },
+  "scripts": {
+    "test": "tap ./src/**/*.test.js",
+    "test:watch": "tap ./src/**/*.test.js --watch --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.ibm.com:BusinessAnalytics/sre-tdd-lab.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
