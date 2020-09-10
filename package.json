@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "got": "^11.6.1"
   },
   "devDependencies": {
     "proxyquire": "^2.1.3",
