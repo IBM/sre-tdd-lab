@@ -11,7 +11,7 @@ const getStub = sinon.stub(got, 'get');
 tap.test('get a random dad joke', t => {
     dadJokes.getRandomJoke();
 
-    t.ok(getStub.calledOnceWith(DAD_JOKES_API_BASE_URL, BASIC_HEADERS), 'server instantiates');
+    t.ok(getStub.calledOnceWith(DAD_JOKES_API_BASE_URL, BASIC_HEADERS), 'get call for a random dad joke fires');
 
     t.end();
 });
