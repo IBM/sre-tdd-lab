@@ -15,8 +15,8 @@
   },
   "scripts": {
     "lint": "npx xo",
-    "test": "tap ./src/**/*.test.js",
-    "test:watch": "tap ./src/**/*.test.js --watch --coverage"
+    "test": "tap ./src",
+    "test:watch": "npm run test -- --watch --coverage"
   },
   "repository": {
     "type": "git",
