@@ -6,6 +6,9 @@ const expressMock = {
     listen: sinon.stub()
 };
 const expressModuleStub = sinon.stub();
+
+// In cases where the dependency you are consuming is exported so that no method is visible, you may need to mock it.
+// In these cases Sinon cannot mock it properly. Tools like proxyquire or jest.mock() are helpful.
 const serverMock = proxyquire('./server', {
     express: expressModuleStub.returns(expressMock)
 });
