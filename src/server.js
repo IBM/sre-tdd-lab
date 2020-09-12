@@ -1,10 +1,14 @@
 const express = require('express');
+const morgan = require('morgan');
+
 const routes = require('./routes');
 
 const PORT = 3000;
 
 const start = () => {
     const app = express();
+
+    app.use(morgan());
 
     routes.configureRoutes(app);
 
