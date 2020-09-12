@@ -22,7 +22,9 @@ tap.test('get a random dad joke', async t => {
 
     const response = await dadJokes.getRandomJoke();
 
-    t.ok(getStub.calledOnceWith(DAD_JOKES_API_BASE_URL, BASIC_HEADERS), 'get call for a random dad joke fires');
+    t.ok(getStub.calledOnceWith(DAD_JOKES_API_BASE_URL, {
+        headers: BASIC_HEADERS
+    }), 'get call for a random dad joke fires');
     t.equal(response, bodyMock, 'returns the response body');
 
     t.end();
