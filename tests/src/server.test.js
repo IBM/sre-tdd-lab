@@ -17,16 +17,16 @@ const serverMock = proxyquire('../../src/server', {
 const consoleStub = sinon.stub(global.console, 'info');
 const configureRoutesStub = sinon.stub(routes, 'configureRoutes');
 
-const resetStubs = () => {
+tap.beforeEach(done => {
     expressMock.listen.resetHistory();
     expressModuleStub.resetHistory();
     consoleStub.resetHistory();
     configureRoutesStub.resetHistory();
-};
+
+    done();
+});
 
 tap.test('configure the server', t => {
-    resetStubs();
-
     serverMock.start();
 
     t.ok(expressModuleStub.calledOnceWith(), 'server instantiates');
@@ -36,8 +36,6 @@ tap.test('configure the server', t => {
 });
 
 tap.test('configure server routes', t => {
-    resetStubs();
-
     serverMock.start();
 
     t.ok(configureRoutesStub.calledOnceWithExactly(expressMock), 'routes factory is called with the app');
@@ -46,8 +44,6 @@ tap.test('configure server routes', t => {
 });
 
 tap.test('when the server starts', t => {
-    resetStubs();
-
     serverMock.start();
 
     const appListenCallback = expressMock.listen.getCall(0).args[1];
