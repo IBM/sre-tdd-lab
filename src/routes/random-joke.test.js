@@ -49,7 +49,6 @@ tap.test('when the random joke call succeeds', async t => {
 });
 
 tap.test('when the random joke call fails', async t => {
-
     const expectedError = 'some joke';
     getRandomJokeStub.rejects(expectedError);
 
