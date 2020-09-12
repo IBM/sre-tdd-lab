@@ -15,7 +15,7 @@ const serverMock = proxyquire('../../src/server', {
 
 const consoleStub = sinon.stub(global.console, 'info');
 
-tap.test('start an express server', t => {
+tap.test('configure the server', t => {
     serverMock.start();
 
     t.ok(expressModuleStub.calledOnceWith(), 'server instantiates');
