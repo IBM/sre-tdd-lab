@@ -12,7 +12,8 @@ const expressModuleStub = sinon.stub();
 const serverMock = proxyquire('../../src/server', {
     express: expressModuleStub.returns(expressMock)
 });
-const consoleSpy = sinon.spy(global.console, 'log');
+
+const consoleStub = sinon.stub(global.console, 'info');
 
 tap.test('start an express server', t => {
     serverMock.start();
@@ -29,7 +30,7 @@ tap.test('when the server starts', t => {
     const appListenCallback = expressMock.listen.getCall(0).args[1];
     appListenCallback();
 
-    t.ok(consoleSpy.calledWith('The server is running on port 3000.'), 'server startup log message');
+    t.ok(consoleStub.calledWith('The server is running on port 3000.'), 'server startup log message');
 
     t.end();
 });
