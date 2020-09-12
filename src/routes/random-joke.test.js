@@ -12,19 +12,19 @@ const {
 
 const getRandomJokeStub = sinon.stub(dadJokesResources, 'getRandomJoke');
 
-tap.test('/random-joke route exists', t => {
+tap.test('random joke route', t => {
     const appMock = {
         get: sinon.stub()
     };
 
     getJoke(appMock);
 
-    t.ok(appMock.get.calledOnceWithExactly(RANDOM_JOKE_ENDPOINT, sinon.match.func), 'the dad jokes end-point should be exposed');
+    t.ok(appMock.get.calledOnceWithExactly(RANDOM_JOKE_ENDPOINT, sinon.match.func), `the ${RANDOM_JOKE_ENDPOINT} end-point should be exposed`);
 
     t.end();
 });
 
-tap.test('calls the random joke resource and returns the body', async t => {
+tap.test('when the random joke call succeeds', async t => {
     const expectedResponse = 'some joke';
     getRandomJokeStub.resolves(expectedResponse);
 
