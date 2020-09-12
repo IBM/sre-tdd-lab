@@ -6,6 +6,9 @@ const tap = require('tap');
 const sinon = require('sinon');
 
 const dadJokesResources = require('../resources/dad-jokes');
+const {
+    RANDOM_JOKE_ENDPOINT
+} = require('./endpoints');
 
 const getRandomJokeStub = sinon.stub(dadJokesResources, 'getRandomJoke');
 
@@ -16,7 +19,7 @@ tap.test('/random-joke route exists', t => {
 
     getJoke(appMock);
 
-    t.ok(appMock.get.calledOnceWithExactly('/random-joke', sinon.match.func), 'the dad jokes end-point should be exposed');
+    t.ok(appMock.get.calledOnceWithExactly(RANDOM_JOKE_ENDPOINT, sinon.match.func), 'the dad jokes end-point should be exposed');
 
     t.end();
 });
