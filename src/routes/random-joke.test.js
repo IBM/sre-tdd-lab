@@ -22,6 +22,9 @@ tap.test('/random-joke route exists', t => {
 tap.test('calls the random joke resource and returns the body', t => {
     const getRandomJokeStub = sinon.stub(dadJokesResources, 'getRandomJoke');
 
+    const expectedResponse = 'some joke';
+    getRandomJokeStub.resolves(expectedResponse);
+
     const appMock = {
         get: sinon.stub()
     };
@@ -37,6 +40,7 @@ tap.test('calls the random joke resource and returns the body', t => {
     getJokeCallback(requestMock, responseMock);
 
     t.ok(getRandomJokeStub.calledOnceWith(), 'get random joke resource called');
+    t.ok(responseMock.send.calledOnceWith(expectedResponse), 'send the random joke response');
 
     t.end();
 });
