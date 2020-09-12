@@ -1,6 +1,9 @@
 const got = require('got');
 
-const {BASIC_HEADERS, DAD_JOKES_API_BASE_URL} = require('./constants');
+const {
+    BASIC_HEADERS,
+    DAD_JOKES_API_BASE_URL
+} = require('./constants');
 
 const getRandomJoke = async () => {
     try {
