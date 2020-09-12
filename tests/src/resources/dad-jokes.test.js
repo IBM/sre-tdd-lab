@@ -16,6 +16,20 @@ const bodyMock = {
 const getStub = sinon.stub(got, 'get');
 
 tap.test('get a random dad joke', t => {
+    t.test('api call', tChild => {
+        getStub.resolves({
+            body: bodyMock
+        });
+
+        dadJokes.getRandomJoke();
+
+        tChild.ok(getStub.calledOnceWith(DAD_JOKES_API_BASE_URL, {
+            headers: BASIC_HEADERS
+        }), 'makes the get call for a random dad joke');
+
+        tChild.end();
+    });
+
     t.test('when the call to get a random dad joke succeeds', async tChild => {
         getStub.resolves({
             body: bodyMock
@@ -23,9 +37,6 @@ tap.test('get a random dad joke', t => {
 
         const response = await dadJokes.getRandomJoke();
 
-        tChild.ok(getStub.calledOnceWith(DAD_JOKES_API_BASE_URL, {
-            headers: BASIC_HEADERS
-        }), 'get call for a random dad joke fires');
         tChild.equal(response, bodyMock, 'returns the response body');
 
         tChild.end();
