@@ -35,6 +35,16 @@ tap.test('configure the server', t => {
     t.end();
 });
 
+tap.test('configure server routes', t => {
+    resetStubs();
+
+    serverMock.start();
+
+    t.ok(configureRoutesStub.calledOnceWithExactly(expressMock), 'routes factory is called with the app');
+
+    t.end();
+});
+
 tap.test('when the server starts', t => {
     resetStubs();
 
