@@ -6,6 +6,7 @@ const expressMock = {
     listen: sinon.stub()
 };
 const expressModuleStub = sinon.stub();
+const routes = require('../../src/routes');
 
 // In cases where the dependency you are consuming is exported so that no method is visible, you may need to mock it.
 // In these cases Sinon cannot mock it properly. Tools like proxyquire or jest.mock() are helpful.
@@ -14,8 +15,18 @@ const serverMock = proxyquire('../../src/server', {
 });
 
 const consoleStub = sinon.stub(global.console, 'info');
+const configureRoutesStub = sinon.stub(routes, 'configureRoutes');
+
+const resetStubs = () => {
+    expressMock.listen.resetHistory();
+    expressModuleStub.resetHistory();
+    consoleStub.resetHistory();
+    configureRoutesStub.resetHistory();
+};
 
 tap.test('configure the server', t => {
+    resetStubs();
+
     serverMock.start();
 
     t.ok(expressModuleStub.calledOnceWith(), 'server instantiates');
@@ -25,6 +36,8 @@ tap.test('configure the server', t => {
 });
 
 tap.test('when the server starts', t => {
+    resetStubs();
+
     serverMock.start();
 
     const appListenCallback = expressMock.listen.getCall(0).args[1];
