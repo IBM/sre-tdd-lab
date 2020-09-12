@@ -12,6 +12,7 @@ const getJoke = app => {
             throw new Error(error);
         }
     });
+    console.info(`Configured the ${RANDOM_JOKE_ENDPOINT} route`);
 };
 
 module.exports = {
