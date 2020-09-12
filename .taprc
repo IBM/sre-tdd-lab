@@ -1,0 +1,4 @@
+files: ./tests
+reporter: spec
+test-ignore: node_modules
+timeout: 5

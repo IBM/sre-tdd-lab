@@ -1,11 +1,11 @@
 const {
     configureRoutes
-} = require('.');
+} = require('../../../src/routes');
 
 const tap = require('tap');
 const sinon = require('sinon');
 
-const randomJokeRoute = require('./random-joke');
+const randomJokeRoute = require('../../../src/routes/random-joke');
 
 const randomJokeStub = sinon.stub(randomJokeRoute, 'getJoke');
 

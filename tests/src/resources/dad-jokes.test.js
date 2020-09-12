@@ -1,10 +1,13 @@
-const dadJokes = require('./dad-jokes');
+const dadJokes = require('../../../src/resources/dad-jokes');
 
 const tap = require('tap');
 const sinon = require('sinon');
 const got = require('got');
 
-const {BASIC_HEADERS, DAD_JOKES_API_BASE_URL} = require('./constants');
+const {
+    BASIC_HEADERS,
+    DAD_JOKES_API_BASE_URL
+} = require('../../../src/resources/constants');
 
 const bodyMock = {
     some: 'response'

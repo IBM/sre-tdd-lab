@@ -1,14 +1,14 @@
 const {
     getJoke
-} = require('./random-joke');
+} = require('../../../src/routes/random-joke');
 
 const tap = require('tap');
 const sinon = require('sinon');
 
-const dadJokesResources = require('../resources/dad-jokes');
+const dadJokesResources = require('../../../src/resources/dad-jokes');
 const {
     RANDOM_JOKE_ENDPOINT
-} = require('./endpoints');
+} = require('../../../src/routes/endpoints');
 
 const getRandomJokeStub = sinon.stub(dadJokesResources, 'getRandomJoke');
 
