@@ -16,7 +16,7 @@ const bodyMock = {
 const getStub = sinon.stub(got, 'get');
 
 tap.afterEach(done => {
-    getStub.resetHistory();
+    getStub.reset();
     done();
 });
 

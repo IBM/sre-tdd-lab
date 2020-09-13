@@ -10,7 +10,7 @@ const randomJokeRoute = require('../../../src/routes/random-joke');
 const randomJokeStub = sinon.stub(randomJokeRoute, 'getJoke');
 
 tap.afterEach(done => {
-    randomJokeStub.resetHistory();
+    randomJokeStub.reset();
     done();
 });
 

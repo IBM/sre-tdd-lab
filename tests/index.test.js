@@ -11,7 +11,7 @@ proxyquire('..', {
 });
 
 tap.afterEach(done => {
-    serverStartStub.resetHistory();
+    serverStartStub.reset();
     done();
 });
 

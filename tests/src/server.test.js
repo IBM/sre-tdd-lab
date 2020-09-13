@@ -23,10 +23,11 @@ const consoleStub = sinon.stub(global.console, 'info');
 const configureRoutesStub = sinon.stub(routes, 'configureRoutes');
 
 tap.afterEach(done => {
-    expressMock.listen.resetHistory();
+    expressMock.listen.reset();
+    expressMock.use.reset();
     expressModuleStub.resetHistory();
-    consoleStub.resetHistory();
-    configureRoutesStub.resetHistory();
+    consoleStub.reset();
+    configureRoutesStub.reset();
     done();
 });
 

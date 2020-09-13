@@ -13,7 +13,7 @@ const {
 const getRandomJokeStub = sinon.stub(dadJokesResources, 'getRandomJoke');
 
 tap.afterEach(done => {
-    getRandomJokeStub.resetHistory();
+    getRandomJokeStub.reset();
     done();
 });
 
