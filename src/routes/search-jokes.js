@@ -6,7 +6,8 @@ const dadJokes = require('../resources/dad-jokes');
 const searchJokes = app => {
     app.get(SEARCH_JOKE_ENDPOINT, async (request, response) => {
         try {
-            const jokeResponse = await dadJokes.searchJokes();
+            const queryString = request.query.term;
+            const jokeResponse = await dadJokes.searchJokes(queryString);
             response.send(jokeResponse);
         } catch (error) {
             throw new Error(error);
