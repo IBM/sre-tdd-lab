@@ -18,7 +18,7 @@ tap.afterEach(done => {
 });
 
 tap.test('random joke', t => {
-    t.test('random joke route', tChild => {
+    t.test('configure route', tChild => {
         const appMock = {
             get: sinon.stub()
         };
