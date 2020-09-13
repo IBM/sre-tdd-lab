@@ -12,6 +12,11 @@ const {
 
 const getRandomJokeStub = sinon.stub(dadJokesResources, 'getRandomJoke');
 
+tap.afterEach(done => {
+    getRandomJokeStub.resetHistory();
+    done();
+});
+
 tap.test('random joke route', t => {
     const appMock = {
         get: sinon.stub()

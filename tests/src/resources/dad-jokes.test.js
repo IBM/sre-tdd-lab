@@ -15,6 +15,11 @@ const bodyMock = {
 
 const getStub = sinon.stub(got, 'get');
 
+tap.afterEach(done => {
+    getStub.resetHistory();
+    done();
+});
+
 tap.test('get a random dad joke', t => {
     t.test('api call', tChild => {
         getStub.resolves({

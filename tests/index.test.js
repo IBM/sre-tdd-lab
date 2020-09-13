@@ -10,6 +10,11 @@ proxyquire('..', {
     }
 });
 
+tap.afterEach(done => {
+    serverStartStub.resetHistory();
+    done();
+});
+
 tap.test('start the server', t => {
     t.ok(serverStartStub.calledOnceWith(), 'start the server');
 

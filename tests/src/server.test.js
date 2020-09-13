@@ -22,12 +22,11 @@ const serverMock = proxyquire('../../src/server', {
 const consoleStub = sinon.stub(global.console, 'info');
 const configureRoutesStub = sinon.stub(routes, 'configureRoutes');
 
-tap.beforeEach(done => {
+tap.afterEach(done => {
     expressMock.listen.resetHistory();
     expressModuleStub.resetHistory();
     consoleStub.resetHistory();
     configureRoutesStub.resetHistory();
-
     done();
 });
 
