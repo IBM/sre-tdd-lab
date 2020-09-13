@@ -17,6 +17,7 @@
   },
   "scripts": {
     "lint": "npx xo",
+    "lint:fix": "npx xo --fix",
     "start:dev": "nodemon ./index.js",
     "start": "node ./index.js",
     "test": "npx tap",
