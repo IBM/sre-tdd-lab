@@ -30,6 +30,36 @@ tap.test('random joke', t => {
         tChild.end();
     });
 
+    t.test('given a search term', async tChild => {
+        const expectedResponse = 'some joke';
+        searchJokesStub.resolves(expectedResponse);
+
+        const appMock = {
+            get: sinon.stub()
+        };
+
+        searchJokes(appMock);
+
+        const searchTerm = 'some search term';
+
+        const requestMock = {
+            query: {
+                term: searchTerm
+            }
+        };
+        const responseMock = {
+            send: sinon.stub()
+        };
+        const searchJokesCallback = appMock.get.getCalls()[0].args[1];
+
+        await searchJokesCallback(requestMock, responseMock);
+
+        tChild.ok(searchJokesStub.calledOnceWith(searchTerm), 'search jokes resource called');
+        tChild.ok(responseMock.send.calledOnceWith(expectedResponse), 'send the search jokes response');
+
+        tChild.end();
+    });
+
     t.test('when the search jokes call succeeds', async tChild => {
         const expectedResponse = 'some joke';
         searchJokesStub.resolves(expectedResponse);
@@ -49,7 +79,6 @@ tap.test('random joke', t => {
         await searchJokesCallback(requestMock, responseMock);
 
         tChild.ok(searchJokesStub.calledOnceWith(), 'search jokes resource called');
-        tChild.ok(responseMock.send.calledOnceWith(expectedResponse), 'send the search jokes response');
 
         tChild.end();
     });
