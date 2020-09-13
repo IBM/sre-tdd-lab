@@ -17,59 +17,63 @@ tap.afterEach(done => {
     done();
 });
 
-tap.test('random joke route', t => {
-    const appMock = {
-        get: sinon.stub()
-    };
+tap.test('random joke', t => {
+    t.test('configure route', tChild => {
+        const appMock = {
+            get: sinon.stub()
+        };
 
-    getJoke(appMock);
+        getJoke(appMock);
 
-    t.ok(appMock.get.calledOnceWithExactly(RANDOM_JOKE_ENDPOINT, sinon.match.func), `the ${RANDOM_JOKE_ENDPOINT} end-point should be exposed`);
+        tChild.ok(appMock.get.calledOnceWithExactly(RANDOM_JOKE_ENDPOINT, sinon.match.func), `the ${RANDOM_JOKE_ENDPOINT} end-point should be exposed`);
 
-    t.end();
-});
+        tChild.end();
+    });
 
-tap.test('when the random joke call succeeds', async t => {
-    const expectedResponse = 'some joke';
-    getRandomJokeStub.resolves(expectedResponse);
+    t.test('when the random joke call succeeds', async tChild => {
+        const expectedResponse = 'some joke';
+        getRandomJokeStub.resolves(expectedResponse);
 
-    const appMock = {
-        get: sinon.stub()
-    };
+        const appMock = {
+            get: sinon.stub()
+        };
 
-    getJoke(appMock);
+        getJoke(appMock);
 
-    const requestMock = {};
-    const responseMock = {
-        send: sinon.stub()
-    };
-    const getJokeCallback = appMock.get.getCalls()[0].args[1];
+        const requestMock = {};
+        const responseMock = {
+            send: sinon.stub()
+        };
+        const getJokeCallback = appMock.get.getCalls()[0].args[1];
 
-    await getJokeCallback(requestMock, responseMock);
+        await getJokeCallback(requestMock, responseMock);
 
-    t.ok(getRandomJokeStub.calledOnceWith(), 'get random joke resource called');
-    t.ok(responseMock.send.calledOnceWith(expectedResponse), 'send the random joke response');
+        tChild.ok(getRandomJokeStub.calledOnceWith(), 'get random joke resource called');
+        tChild.ok(responseMock.send.calledOnceWith(expectedResponse), 'send the random joke response');
 
-    t.end();
-});
+        tChild.end();
+    });
 
-tap.test('when the random joke call fails', async t => {
-    const expectedError = 'some joke';
-    getRandomJokeStub.rejects(expectedError);
+    t.test('when the random joke call fails', async tChild => {
+        const expectedError = 'some joke';
+        getRandomJokeStub.rejects(expectedError);
 
-    const appMock = {
-        get: sinon.stub()
-    };
+        const appMock = {
+            get: sinon.stub()
+        };
 
-    getJoke(appMock);
+        getJoke(appMock);
 
-    const requestMock = {};
-    const responseMock = {
-        send: sinon.stub()
-    };
-    const getJokeCallback = appMock.get.getCalls()[0].args[1];
+        const requestMock = {};
+        const responseMock = {
+            send: sinon.stub()
+        };
+        const getJokeCallback = appMock.get.getCalls()[0].args[1];
 
-    t.rejects(() => getJokeCallback(requestMock, responseMock), new Error(expectedError), 'throws the error');
+        tChild.rejects(() => getJokeCallback(requestMock, responseMock), new Error(expectedError), 'throws the error');
+
+        tChild.end();
+    });
 
     t.end();
 });
