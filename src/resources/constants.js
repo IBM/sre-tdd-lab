@@ -1,5 +1,5 @@
 const DAD_JOKES_API_BASE_URL = 'https://icanhazdadjoke.com';
-const DAD_JOKES_SEARCH_URL = 'https://icanhazdadjoke.com/j/search';
+const DAD_JOKES_SEARCH_URL = 'https://icanhazdadjoke.com/search';
 
 const BASIC_HEADERS = {
     accept: 'application/json',
