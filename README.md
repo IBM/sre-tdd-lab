@@ -1,8 +1,10 @@
 # Test-Driven Development Lab
 
-In this lab you'll learn about Test-Driven Development (TDD) by getting some hands-on experience writing code using TDD.
+## Introduction
 
-The lab is written in Node.js. This is because JavaScript is a simple, ubiquitous language. You will not need to be an expert in it to complete this lab. However, you must possess some basic familiarity with C-family languages (e.g. Java, JavaScript, C++, Ruby, etc.) and have some programming experience to get the most out of it.
+Welcome! In this lab you'll learn about Test-Driven Development (TDD) by getting some hands-on experience writing code using TDD.
+
+The lab is written in Node.js because JavaScript is a simple, ubiquitous language. You will _not_ need to be an expert in it to complete this lab. However, you must possess some basic programming experience to get the most out of it.
 
 ## Prerequisites
 
@@ -10,7 +12,15 @@ The lab is written in Node.js. This is because JavaScript is a simple, ubiquitou
 
 You should have Node.js 10.x or above installed, preferably the latest Long-Term Support (LTS) version. At the time of this writing, that is version 12. Get it [here](https://nodejs.org/en/) or use [`nvm`](https://github.com/nvm-sh/nvm#installing-and-updating) (We strongly recommend using `nvm`).
 
+### Testing Environment
+
+Our testing environment consists of the following tools. You will _not_ need detailed knowledge of these tools to complete this lab.
+
 We're using Node Tap as our test framework. If you're not familiar with it, you should familiarize yourself with the <a href="https://node-tap.org/docs/api/" target="_blank">API</a>.
+
+We use the Sinon library for mocking, stubbing, and spying in our unit tests. Check out the <a href="https://sinonjs.org/releases/v9.0.3/">API</a> if you'd like to know more. It's very useful for writing unit tests, so we encourage you to familiarize yourself with it.
+
+For hard-to-unit-test modules like `express`, we've used <a href="https://github.com/thlorenz/proxyquire#readme" target="_blank">Proxyquire</a>. Hopefully, you won't need this much, but it is an important tool to be aware of.
 
 ## Installation
 
@@ -33,6 +43,10 @@ Run these commands in your terminal with `npm run <command>` (ex. `npm run start
 
 You will mostly be using `npm run test`, `npm run test:watch`, and `npm run start:dev`.
 
-### Testing Environment
+## Additional Notes on the Tesing Environment
 
-This lab will be using the popular library <a href="https://node-tap.org/" target="_blank">`Node Tap`</a> along with <a href="https://sinonjs.org/" target="_blank">`Sinon`</a> as our test runner and mocking libraries, respectively.
+There are other popular testing frameworks such as <a href="https://jestjs.io/" target="_blank">Jest</a>, <a href="https://mochajs.org/" target="_blank">Mocha</a>, <a href="https://qunitjs.com/" target="_blank">QUnit</a> and <a href="https://github.com/avajs/ava" target="_blank">Ava.js</a>. They are all fine and will serve you well if you decide to try them out. Our particular setup prioritizes certain aspects of testing:
+
+- A stub-first mindset to testing (vs. a spy-first mentality like <a href="https://jasmine.github.io/" target="_blank">Jasmine</a>-based frameworks)
+- Very fast tests with native parallelized test runs
+- The option to have a shallowly-nested test structure
